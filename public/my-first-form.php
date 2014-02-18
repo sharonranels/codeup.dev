@@ -68,7 +68,7 @@ var_dump($_POST);
 
         <p>
             <label for="pet">Are you a dog or a cat person? </label>
-                <select id="pet" name="pet">
+                <select id="pet" name="pet" multiple>
                 <option>Cat</option>
                 <option>Dog</option>
                 <option>Both</option>
