@@ -1,0 +1,107 @@
+<?php
+
+echo "<p>POST:</p>";
+var_dump($_POST);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My First HTML Form</title>
+</head>
+<body>
+<h2>User Login</h2>
+	<form method="POST" action="">
+    	<p>
+        	<label for="username">Username</label>
+        	<input id="username" name="username" type="text" placeholder="Enter your user name">
+    	</p>
+    	<p>
+        	<label for="password">Password</label>
+        	<input id="password" name="password" type="password" placeholder="Enter your password">
+    	</p>
+    	<p>
+        	<button type="submit">Login</button>
+    	</p>
+	</form>
+
+<h2>Compose an Email</h2>
+    <form method="POST" action="">
+        <p>
+            <label for="email_to">To:</label>
+            <input id="email_to" name="email_to" type="text" placeholder="Ex: Joe@company.com">
+        </p>
+        <p>
+            <label for="email_from">From:</label>
+            <input id="email_from" name="email_from" type="text" placeholder="Ex: Me@company.com">
+        </p>
+        <p>
+            <label for="subject">Subjet:</label>
+            <input id="subject" name="subject" type="text">
+        </p>
+        <p>
+            <label for="save_to_sent">
+                <input type="checkbox" id="save_to_sent" name="save_to_sent" value="yes" checked> Save to my Sent Box!
+            </label>
+        </p>
+        <p>
+            <textarea id="email_body" name="email_body" rows="10" cols="40" placeholder="Type email here"></textarea>
+        </p>
+        <p>
+            <button type="submit">Send</button>
+        </p>
+    </form>
+
+    <h2>Multiple Choice Test</h2>
+    <form method="POST" action="">
+        <p>Are you a cat person or a dog person?</p>
+            <label for="q1a"><input type="radio" id="q1a" name="q1[]" value="cat"> Cat</label>
+            <label for="q1b"><input type="radio" id="q1b" name="q1[]" value="dog"> Dog</label>
+            <label for="q1c"><input type="radio" id="q1c" name="q1[]" value="both"> Both</label>
+
+        <p>What form of transportation do you use the most?</p>
+            <label for="q2a"><input type="radio" id="q2a" name="q2[]" value="walking"> Walking</label>
+            <label for="q2b"><input type="radio" id="q2b" name="q2[]" value="car"> Car</label>
+            <label for="q2c"><input type="radio" id="q2c" name="q2[]" value="bike"> Bike</label>
+            <label for="q2d"><input type="radio" id="q2d" name="q2[]" value="train"> Train</label>
+
+        <p>
+            <label for="pet">Are you a dog or a cat person? </label>
+                <select id="pet" name="pet">
+                <option>Cat</option>
+                <option>Dog</option>
+                <option>Both</option>
+            </select>
+        </p>
+
+        <p>Are you a cat person or a dog person?</p>
+            <label for="an1"><input type="checkbox" id="an1" name="an[]" value="cat"> Cat</label>
+            <label for="an2"><input type="checkbox" id="an2" name="an[]" value="dog"> Dog</label>
+            <label for="an3"><input type="checkbox" id="an3" name="an[]" value="both"> Both</label>
+
+        <p>What form of transportation do you use the most?</p>
+            <label for="os1"><input type="checkbox" id="os1" name="os[]" value="walking"> Walking</label>
+            <label for="os2"><input type="checkbox" id="os2" name="os[]" value="car"> Car</label>
+            <label for="os3"><input type="checkbox" id="os3" name="os[]" value="bike"> Bike</label>
+            <label for="os4"><input type="checkbox" id="os4" name="os[]" value="train"> Train</label>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+
+    <form method="POST" action="">
+    <h2>Select Testing</h2>
+        <label for="exercise">Do you exercise every day? </label>
+        <select id="exercise" name="exercise">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+
+    </form>
+
+</body>
+</html>
