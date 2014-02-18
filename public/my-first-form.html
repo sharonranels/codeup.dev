@@ -32,9 +32,44 @@
             <label for="subject">Subjet:</label>
             <input id="subject" name="subject" type="text">
         </p>
+        <p>
+            <label for="save_to_sent">
+                <input type="checkbox" id="save_to_sent" name="save_to_sent" value="yes" checked> Save to my Sent Box!
+            </label>
+        </p>
+        <p>
             <textarea id="email_body" name="email_body" rows="10" cols="40" placeholder="Type email here"></textarea>
+        </p>
         <p>
             <button type="submit">Send</button>
+        </p>
+    </form>
+
+    <h2>Multiple Choice Test</h2>
+    <form method="POST" action="http://requestb.in/15ckp011">
+        <p>Are you a cat person or a dog person?</p>
+            <label for="q1a"><input type="radio" id="q1a" name="q1[]" value="cat"> Cat</label>
+            <label for="q1b"><input type="radio" id="q1b" name="q1[]" value="dog"> Dog</label>
+            <label for="q1c"><input type="radio" id="q1c" name="q1[]" value="both"> Both</label>
+
+        <p>What form of transportation do you use the most?</p>
+            <label for="q2a"><input type="radio" id="q2a" name="q2[]" value="walking"> Walking</label>
+            <label for="q2b"><input type="radio" id="q2b" name="q2[]" value="car"> Car</label>
+            <label for="q2c"><input type="radio" id="q2c" name="q2[]" value="bike"> Bike</label>
+            <label for="q2d"><input type="radio" id="q2d" name="q2[]" value="train"> Train</label>
+
+        <p>Are you a cat person or a dog person?</p>
+            <label for="an1"><input type="checkbox" id="an1" name="an[]" value="cat"> Cat</label>
+            <label for="an2"><input type="checkbox" id="an2" name="an[]" value="dog"> Dog</label>
+            <label for="an3"><input type="checkbox" id="an3" name="an[]" value="both"> Both</label>
+
+        <p>What form of transportation do you use the most?</p>
+            <label for="os1"><input type="checkbox" id="os1" name="os[]" value="walking"> Walking</label>
+            <label for="os2"><input type="checkbox" id="os2" name="os[]" value="car"> Car</label>
+            <label for="os3"><input type="checkbox" id="os3" name="os[]" value="bike"> Bike</label>
+            <label for="os4"><input type="checkbox" id="os4" name="os[]" value="train"> Train</label>
+        <p>
+            <button type="submit">Submit</button>
         </p>
     </form>
 
