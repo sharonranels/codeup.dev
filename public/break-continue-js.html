@@ -15,6 +15,7 @@ while (rnd_numb % 2 == 0) {
         // skip the rest of the loop and continue with the next iteration
         rnd_numb = Math.floor((Math.random()*50)+1);
     }
+		console.log("Random odd number to skip is: " + rnd_numb);
 		for (var i = 1; i < 50; i += 2) {
 		   if (i == rnd_numb) {
 		   	console.log("Yipes! Skipping number " + i);
