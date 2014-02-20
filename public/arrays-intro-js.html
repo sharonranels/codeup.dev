@@ -7,10 +7,16 @@
 	<script>
 
 	var names = ['Sharon', 'Michael', 'Todd', 'Loretta'];
-	console.log(names.length);
-	for (i = 0; i < names.length; i++) {
-		console.log(names[i]);
-	}
+	
+	names.forEach(function(element, index, array) {
+		console.log('The name at index ' + index + ' is ' + element);
+	});
+
+
+	// console.log(names.length);
+	// for (i = 0; i < names.length; i++) {
+	// 	console.log(names[i]);
+	// }
 
 	</script>
 
