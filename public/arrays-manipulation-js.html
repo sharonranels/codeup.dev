@@ -27,12 +27,12 @@ planets.push('Pluto');
 logPlanets();
 
 console.log('Removing "The Sun" from the beginning of the planets array.');
-var removeSun = planets.shift();
+planets.shift();
 // todo: Do what the log statement above says you will do.
 logPlanets();
 
 console.log('Removing "Pluto" from the end of the planets array.');
-var removePluto = planets.pop();
+planets.pop();
 // todo: Do what the log statement above says you will do.
 logPlanets();
 
@@ -40,12 +40,13 @@ var index = planets.indexOf('Earth');
 console.log('Finding and logging the index of "Earth" in the planets array.' + index);
 // todo: Do what the log statement above says you will do.
 
-var removed = planets.splice(3,1)
+
+var removed = planets.splice(index + 1,1);
 console.log('Using splice to remove the planet after Earth.');
 // todo: Do what the log statement above says you will do.
 logPlanets();
 
-planets.splice(planets.indexOf('Earth') + 1, 0, 'Mars');
+planets.splice(index + 1, 0, removed[0]);
 console.log('Using splice to add back the planet after Earth.');
 // todo: Do what the log statement above says you will do.
 logPlanets();
