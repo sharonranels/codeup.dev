@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script>
+
+
+var rnd_numb = Math.floor((Math.random()*50)+1);
+
+while (rnd_numb % 2 == 0) {
+        // number isn't even
+        // odd numbers aren't as cool
+        // skip the rest of the loop and continue with the next iteration
+        rnd_numb = Math.floor((Math.random()*50)+1);
+    }
+		for (var i = 1; i < 50; i += 2) {
+		   if (i == rnd_numb) {
+		   	console.log("Yipes! Skipping number " + i);
+		   } else {
+		   console.log("Here is an odd number: " + i);
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
