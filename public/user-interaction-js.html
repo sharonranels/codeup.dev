@@ -9,16 +9,28 @@
 	// todo: Ask the user for their name.
 	//  Keep asking if an empty input is provided.
 
-//WITH FUNCTION
+//CORRECTED FUNCTION DUE TO "NAME" as a pre-defined variable
 	function get_input() {
 		return prompt("What is your name?");
-
-	}	
-	var name = get_input();
-	while (name =='null' || name === "") {
-		name = get_input();
 	}
-	alert ("Welcome " + name);
+
+	var username = get_input();
+	while (username == null || username === '') {
+			username = get_input();
+	}
+	alert("Welcome " + username);
+
+
+//WITH FUNCTION
+	// function get_input() {
+	// 	return prompt("What is your name?");
+
+	// }	
+	// var name = get_input();
+	// while (name =='null' || name === "") {
+	// 	name = get_input();
+	// }
+	// alert ("Welcome " + name);
 
 
 
