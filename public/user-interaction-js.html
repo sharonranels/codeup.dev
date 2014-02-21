@@ -9,12 +9,25 @@
 	// todo: Ask the user for their name.
 	//  Keep asking if an empty input is provided.
 
-	var name = prompt("What is your name?");
-	// console.log(name);
-	while (name == 'null' || name === "") {
-		name = prompt("What is your name?");
+//WITH FUNCTION
+	function get_input() {
+		return prompt("What is your name?");
+
+	}	
+	var name = get_input();
+	while (name =='null' || name === "") {
+		name = get_input();
 	}
-	alert("Welcome " + name);
+	alert ("Welcome " + name);
+
+
+
+//WITHOUT FUNCTION
+	// var name = prompt("What is your name?");
+	// while (name == 'null' || name === "") {
+	// 	name = prompt("What is your name?");
+	// }
+	// alert("Welcome " + name);
 		
 	// todo: Show an alert message that welcomes the user based on their input.
 
