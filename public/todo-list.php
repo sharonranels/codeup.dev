@@ -1,28 +1,69 @@
-<?php
+		<?php
 
-echo "<p>POST:</p>";
-var_dump($_POST);
+		$items = array();
 
+		
+		function open_file($input) {
+	        $handle = fopen($input, "r");
+	        $contents = fread($handle, filesize($input));
+	        fclose($handle);
+	        return explode("\n", $contents);
+	        }
+
+
+	    function save_file($input, $items) {
+		    $itemStr = implode("\n", $items);
+		    $handle = fopen("todo_list.txt", "w+");
+		    fwrite($handle, $itemStr);
+		    fclose($handle);
+	    }
+
+
+		$filename = "todo_list.txt";
+		$items = open_file($filename);
+		
+		if (isset($_POST['newitem'])) {
+			$item = $_POST['newitem'];
+			array_push($items, $item);
+			save_file("todo_list.txt", $items);
+		}
+
+		if (isset($_GET['remove'])) {
+			$item = $_GET['remove'];
+			unset($items[$item]);
+			save_file($filename, $items);
+			header("Location:todo-list.php");
+			exit(0);
+		}
 ?>
 
+
 <!DOCTYPE html>
-<html>e
+<html>
 <head>
 	<title>TODO List</title>
 </head>
 <body>
+
+
 	<h2>TODO List</h2>
 	<ul>
-		<li>Wash cat</li>
-		<li>Brush dog</li>
-		<li>Fold clothes</li>
+
+	<?php
+		
+		foreach ($items as $key => $item) {
+			echo "<li>$item <a href=\"?remove=$key\">Remove</a></li>";
+		}
+
+	 ?>
+
 	</ul>
 
 <h2>Add Tasks to Your TODO List</h2>
-	<form method="POST" action="">
+	<form method="POST" action="todo-list.php">
         <p>
-            <label for="new_task">Please enter a new task to complete: </label>
-            <input id="new_task" name="new_task" type="text" placeholder="Type new task here...">
+            <label for="newitem">Please enter a new task to complete: </label>
+            <input id="newitem" name="newitem" type="text" placeholder="Type new task here...">
         </p>
             
         <p>
