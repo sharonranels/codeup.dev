@@ -4,9 +4,9 @@ $items = array();
 
 $filename = "todo_list.txt";
 
-function save_file($input, $items) {
+function save_file($filename, $items) {
     $itemStr = implode("\n", $items);
-    $handle = fopen("todo_list.txt", "w+");
+    $handle = fopen($filename, "w+");
     fwrite($handle, $itemStr);
     fclose($handle);
 }
@@ -16,9 +16,10 @@ function open_file($input) {
     $contents = fread($handle, filesize($input));
     fclose($handle);
     return explode("\n", $contents);
-	}
-		if (filesize($filename) > 0) {
-			$items = open_file($filename);
+}
+
+if (filesize($filename) > 0) {
+	$items = open_file($filename);
 }
 
 
@@ -30,10 +31,8 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 			move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 			$new_array = open_file($saved_filename);
 			$items = array_merge($items, $new_array);
-			$itemStr = implode("\n", $items);
-		    $handle = fopen("todo_list.txt", "w+");
-		    fwrite($handle, $itemStr);
-		    fclose($handle);
+			save_file("todo_list.txt", $items);
+			var_dump($items);
 		    header("Location:todo-list.php");
 			exit(0);
 			} else {
@@ -71,13 +70,13 @@ if (isset($_GET['remove'])) {
 	<h2>TODO List</h2>
 	<ul>
 
-	<?php
+	
 		
-		foreach ($items as $key => $item) {
-			echo "<li>$item <a href=\"?remove=$key\">Remove</a></li>";
-		}
+	<? foreach ($items as $key => $item): ?>
+			<li><?= $item . " <a href=\"?remove=$key\">Remove</a>"; ?></li>
+	<? endforeach; ?>
 
-	 ?>
+
 
 	</ul>
 
