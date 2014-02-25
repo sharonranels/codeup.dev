@@ -1,5 +1,8 @@
 <?php
 
+
+$archive = array();
+
 $items = array();
 
 $filename = "todo_list.txt";
@@ -14,7 +17,7 @@ function save_file($filename, $items) {
 }
 
 function open_file($input) {
-    $handle = fopen($input, "r");
+    $handle = fopen($input, "r+");
     $contents = fread($handle, filesize($input));
     fclose($handle);
     return explode("\n", $contents);
@@ -58,8 +61,16 @@ if (isset($_POST['newitem']) && !empty($_POST['newitem'])) {
 }
 
 if (isset($_GET['remove'])) {
-	$item = $_GET['remove'];
-	unset($items[$item]);
+	$remove = $items[$_GET['remove']];
+    if(open_file("archive.txt") == "\n") {
+
+    } else {
+    	$archive = open_file("archive.txt");
+	}
+    
+    array_push($archive, $remove);
+	save_file("archive.txt", $archive);
+	unset($items[$_GET['remove']]);
 	save_file($filename, $items);
 	header("Location:todo-list.php");
 	exit(0);
