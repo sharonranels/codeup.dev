@@ -23,20 +23,23 @@ function open_file($input) {
 
 
 if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
-	$upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
-	$filename = basename($_FILES['file1']['name']);
-	$saved_filename = $upload_dir . $filename;
-	move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
-	$new_array = open_file($saved_filename);
-	$items = array_merge($items, $new_array);
-	$itemStr = implode("\n", $items);
-    $handle = fopen("todo_list.txt", "w+");
-    fwrite($handle, $itemStr);
-    fclose($handle);
-    header("Location:todo-list.php");
-	exit(0);
+		if($_FILES['file1']['type'] == 'text/plain') {
+			$upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
+			$filename = basename($_FILES['file1']['name']);
+			$saved_filename = $upload_dir . $filename;
+			move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+			$new_array = open_file($saved_filename);
+			$items = array_merge($items, $new_array);
+			$itemStr = implode("\n", $items);
+		    $handle = fopen("todo_list.txt", "w+");
+		    fwrite($handle, $itemStr);
+		    fclose($handle);
+		    header("Location:todo-list.php");
+			exit(0);
+			} else {
+				echo "<p>The file you are tring to load is not a txt file - please select a different file.</p>";
+	}
 }
-
 
 
 if (isset($_POST['newitem']) && !empty($_POST['newitem'])) {
