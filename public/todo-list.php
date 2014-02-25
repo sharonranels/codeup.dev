@@ -119,7 +119,7 @@ if (isset($_GET['remove'])) {
     </p>
         
     <p>
-        <button type="submit" value="Upload">Send</button>
+        <button type="submit" value="Upload">Upload</button>
     </p>
 
 
