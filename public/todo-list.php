@@ -81,7 +81,7 @@ if (isset($_GET['remove'])) {
 	
 		
 	<? foreach ($items as $key => $item): ?>
-			<li><?= $item . " <a href=\"?remove=$key\">Remove</a>"; ?></li>
+			<li><?= htmlspecialchars(strip_tags($item)) . " <a href=\"?remove=$key\">Remove</a>"; ?></li>
 	<? endforeach; ?>
 
 
