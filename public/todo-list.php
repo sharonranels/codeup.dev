@@ -4,6 +4,8 @@ $items = array();
 
 $filename = "todo_list.txt";
 
+$errorMessage = '';
+
 function save_file($filename, $items) {
     $itemStr = implode("\n", $items);
     $handle = fopen($filename, "w+");
@@ -42,7 +44,7 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 			exit(0);
 		}
 		} else {
-			echo "<p>The file you are trying to load is not a txt file - please select a different file.</p>";
+			$errorMessage = "The file you are trying to load is not a txt file - please select a different file.";
 	}
 }
 
@@ -100,7 +102,9 @@ if (isset($_GET['remove'])) {
 
 </form>
 
-    
+<h1>
+<?= $errorMessage; ?>	
+</h1>
 
 <form method="POST" enctype="multipart/form-data" action="">
     <p>
