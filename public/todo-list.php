@@ -63,12 +63,16 @@ if (isset($_POST['newitem']) && !empty($_POST['newitem'])) {
 if (isset($_GET['remove'])) {
 	$remove = $items[$_GET['remove']];
     if(open_file("archive.txt") == "\n") {
+    	if($archive[0] == 0) {
+    		unset($archive);
+    	}
 
     } else {
     	$archive = open_file("archive.txt");
 	}
     
     array_push($archive, $remove);
+    var_dump($archive);
 	save_file("archive.txt", $archive);
 	unset($items[$_GET['remove']]);
 	save_file($filename, $items);
