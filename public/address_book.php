@@ -3,7 +3,7 @@
 $address_entry = [];
 $filename = "address_book.csv";
 $errorMessage = '';
-
+$temp_array = [];
 
 $address_book = [
     ['The White House', '1600 Pennsylvania Avenue NW', 'Washington', 'DC', '20500'],
@@ -21,21 +21,33 @@ function writeCSV($filename, $rows) {	//$filename = addressbook.csv file & $row 
 	fclose($handle);
 }
 
-if(!empty($_POST)) {
-	$name = $_POST['name'];
-	$address = $_POST['address'];
-	$city = $_POST['city'];
-	$state = $_POST['state'];
-	$zip = $_POST['zip'];
-	$phone = $_POST['phone'];
+foreach ($_POST as $key => $value) {
+	if(empty($value)) {
+		$errorMessage .= $key . " is empty - please retry.\n";
+	} else {
+		$temp_array[$key] = htmlspecialchars(strip_tags($value));
+	}
+}
+// THESE ARE REPLACED BY ABOVE FOREACH ARRAY.
+// if(!empty($_POST)) {
+// 	$name = $_POST['name'];
+// if(!empty($_POST)) {
+// 	$address = $_POST['address'];	
+// if(!empty($_POST)) {
+// 	$city = $_POST['city'];
+// if(!empty($_POST)) {
+// 	$state = $_POST['state'];
+// if(!empty($_POST)) {
+// 	$zip = $_POST['zip'];
+// if(!empty($_POST)) {
+// 	$phone = $_POST['phone'];
 
-$address_entry = [$name, $address, $city, $state, $zip, $phone];
+
+$address_entry = [$temp_array['name'], $temp_array['address'], $temp_array['city'], $temp_array['state'], $temp_array['zip'], $temp_array['phone']];
 
 array_push($address_book, $address_entry);
 
 writeCSV('address_book.csv', $address_book);
-
-}
 
 var_dump($address_book);
 ?>
@@ -47,7 +59,6 @@ var_dump($address_book);
 </head>
 <body>
 	<h2>Address Book</h2>
-
 
 <table>
 	<tr>
@@ -73,6 +84,11 @@ foreach ($address_book as $key => $row) {
 ?>
 
 </table>
+
+<h1>
+<?= $errorMessage; ?>	
+</h1>
+
 
 <h2>Address Book Additions</h2>
 
