@@ -1,55 +1,85 @@
 <?php
 
-$address_entry = [];
-$filename = "address_book.csv";
-$errorMessage = '';
-$temp_array = [];
+class AddressDataStore {
 
-$address_book = [
-    ['The White House', '1600 Pennsylvania Avenue NW', 'Washington', 'DC', '20500'],
-    ['Marvel Comics', 'P.O. Box 1527', 'Long Island City', 'NY', '11101'],
-    ['LucasArts', 'P.O. Box 29901', 'San Francisco', 'CA', '94129-0901']
-];
+	public $filename = '';
 
-//var_dump($_POST);
+	function __construct($filename = '')
+	{
+		$this->filename = $filename;
+	}
 
-function writeCSV($filename, $rows) {	//$filename = addressbook.csv file & $row = $address_book array line.
-	$handle = fopen($filename, 'w');
-	foreach ($rows as $row) {  //$row is one item in the row.
+    function read_address_book()
+    {
+        if(empty($this->filename)) {
+    	$address_book = [];
+    } else {
+    	$handle = fopen($this->filename, "r+");
+    	while(($data = fgetcsv($handle)) !==FALSE) {
+    		$address_book[] = $data;
+		}	
+    	fclose($handle);
+	}
+    	return $address_book;
+    }
+
+    function writeCSV($addresses_array) 
+    {
+        $handle = fopen($this->filename, 'w');
+	foreach ($addresses_array as $row) {
 		fputcsv($handle, $row);
 	}
 	fclose($handle);
-}
-
-foreach ($_POST as $key => $value) {
-	if(empty($value)) {
-		$errorMessage .= $key . " is empty - please retry.\n";
-	} else {
-		$temp_array[$key] = htmlspecialchars(strip_tags($value));
 	}
 }
-// THESE ARE REPLACED BY ABOVE FOREACH ARRAY.
-// if(!empty($_POST)) {
-// 	$name = $_POST['name'];
-// if(!empty($_POST)) {
-// 	$address = $_POST['address'];	
-// if(!empty($_POST)) {
-// 	$city = $_POST['city'];
-// if(!empty($_POST)) {
-// 	$state = $_POST['state'];
-// if(!empty($_POST)) {
-// 	$zip = $_POST['zip'];
-// if(!empty($_POST)) {
-// 	$phone = $_POST['phone'];
 
 
-$address_entry = [$temp_array['name'], $temp_array['address'], $temp_array['city'], $temp_array['state'], $temp_array['zip'], $temp_array['phone']];
+$errorMessage = '';
 
-array_push($address_book, $address_entry);
+$filename = 'address_book.csv';
+$run = new AddressDataStore($filename);
+$address_book = $run->read_address_book();
 
-writeCSV('address_book.csv', $address_book);
+if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
+	if($_FILES['file1']['type'] == 'text/csv') {
+		$upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
+		$filename = basename($_FILES['file1']['name']);
+		$saved_filename = $upload_dir . $filename;
+		move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+		$uploaded_file = new AddressDataStore($saved_filename);
+		$new_array = $uploaded_file->read_address_book();
+		var_dump($new_array);
+		$address_book = array_merge($address_book, $new_array);
+		$run->writeCSV($address_book);
+	    header("Location:todo-list.php");
+		exit(0);
 
-var_dump($address_book);
+	}
+}
+
+if(!empty($_POST)) {
+	if(empty($_POST['name'])) {
+		$errorMessage = 'You must give data for everything with "*".';
+	} elseif (empty($_POST['address'])) {
+		$errorMessage = 'You must give data for everything with "*".';
+	} elseif (empty($_POST['city'])) {
+		$errorMessage = 'You must give data for everything with "*".';
+	} elseif (empty($_POST['state'])) {
+		$errorMessage = 'You must give data for everything with "*".';
+	} elseif (empty($_POST['zip'])) {
+		$errorMessage = 'You must give data for everything with "*".';
+	} else {
+		array_push($address_book, $_POST);
+		$run->writeCSV($address_book);
+	}
+}
+
+if (isset($_GET['remove'])) {
+	$remove = $_GET['remove'];
+	unset($address_book[$remove]);
+	$run->writeCSV($address_book);
+}
+
 ?>
 
 
@@ -69,25 +99,23 @@ var_dump($address_book);
 		<td>Zip</td>
 		<td>Phone</td>
 	</tr>
-<?php
 
-foreach ($address_book as $key => $row) {
-	echo "<tr>
-		<td>$row[0]</td>
-		<td>$row[1]</td>
-		<td>$row[2]</td>
-		<td>$row[3]</td>
-		<td>$row[4]</td>
-		<td>$row[4]</td>
-	</tr>";
-}
-?>
+<? if(!empty($address_book)) : ?>
+	<? foreach ($address_book as $key => $rows) : ?>
+		<tr>
+		<? foreach ($rows as $field) : ?>
+			<td><?= "$field"?></td>
+			<? endforeach;?>
+			<td><?=" <a href=\"?remove=$key\">Remove</a>"; ?></td>
+		</tr>
+<? endforeach;?>
+<? endif;?>
 
 </table>
 
-<h1>
+<h3>
 <?= $errorMessage; ?>	
-</h1>
+</h3>
 
 
 <h2>Address Book Additions</h2>
@@ -101,14 +129,23 @@ foreach ($address_book as $key => $row) {
 	* Zip: <input type="text" name="zip"><br>
 	Phone: <input type="text" name="phone"><br>
 	<input type="submit">
-
+</form>
 
 </p>	
 
-<p>
-		
+<form method="POST" enctype="multipart/form-data" action="">
+    <p>
+        <label for="file1">Please select file to upload: </label>
+        <input type="file" id="file1" name="file1">
+    </p>
+	<p>
+        <button type="submit" value="Upload">Send</button>
+    </p>
 
 
+
+</form>
+	
 
 </body>
 </html>
