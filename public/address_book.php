@@ -1,38 +1,6 @@
 <?php
 
-class AddressDataStore {
-
-	public $filename = '';
-
-	function __construct($filename = '')
-	{
-		$this->filename = $filename;
-	}
-
-    function read_address_book()
-    {
-        if(empty($this->filename)) {
-    	$address_book = [];
-    } else {
-    	$handle = fopen($this->filename, "r+");
-    	while(($data = fgetcsv($handle)) !==FALSE) {
-    		$address_book[] = $data;
-		}	
-    	fclose($handle);
-	}
-    	return $address_book;
-    }
-
-    function writeCSV($addresses_array) 
-    {
-        $handle = fopen($this->filename, 'w');
-	foreach ($addresses_array as $row) {
-		fputcsv($handle, $row);
-	}
-	fclose($handle);
-	}
-}
-
+include('address_data_store.php');
 
 $errorMessage = '';
 
@@ -51,7 +19,7 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 		var_dump($new_array);
 		$address_book = array_merge($address_book, $new_array);
 		$run->writeCSV($address_book);
-	    header("Location:todo-list.php");
+	    header("Location:address_book.php");
 		exit(0);
 
 	}
@@ -78,6 +46,8 @@ if (isset($_GET['remove'])) {
 	$remove = $_GET['remove'];
 	unset($address_book[$remove]);
 	$run->writeCSV($address_book);
+	header("Location:address_book.php");
+	exit(0);
 }
 
 ?>
