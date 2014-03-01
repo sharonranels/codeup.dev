@@ -1,32 +1,64 @@
 <?php
 
+require_once('filestore.php');
+
+class TodoList extends Filestore {
+
+	public $filename = "todo_list.txt";
+
+	public $items = array();
+
+	public function __construct($filename = '') {
+		if (!empty($filename)) {
+			$this->filename = $filename;
+		}
+        	$this->items = $this->get_file();
+	}
+	
+	// public function save_file() {
+	    // $itemStr = implode("\n", $this->items);
+	    // $handle = fopen($this->filename, "w+");
+	    // fwrite($handle, $itemStr);
+	    // fclose($handle);
+	// }
+
+	// public function read_file() {
+	//     $handle = fopen($this->filename, "r+");
+	//     $contents = fread($handle, filesize($this->filename));
+	//     fclose($handle);
+	//     return explode("\n", $contents);
+	// }
+	
+	public function get_file() {
+		if (filesize($this->filename) > 0) {
+			return $this->read_file();
+		} else {
+			return array();
+		}
+	}
+
+	public function remove_item($key, $redirect = FALSE) {
+		unset($this->items[$key]);
+		$this->save_file($this->items);
+		if (is_string($redirect)) {
+			header("Location: $redirect");
+			exit(0);
+		}
+	}
+
+	public function add_item($thing) {
+		array_push($this->items, $thing);
+		$this->save_file('todo_list.txt');
+		//header("Location:todo-list.php");
+		//exit(0);
+	}
+
+}
 
 $archive = array();
-
-$items = array();
-
-$filename = "todo_list.txt";
-
 $errorMessage = '';
 
-function save_file($filename, $items) {
-    $itemStr = implode("\n", $items);
-    $handle = fopen($filename, "w+");
-    fwrite($handle, $itemStr);
-    fclose($handle);
-}
-
-function open_file($input) {
-    $handle = fopen($input, "r+");
-    $contents = fread($handle, filesize($input));
-    fclose($handle);
-    return explode("\n", $contents);
-}
-
-if (filesize($filename) > 0) {
-	$items = open_file($filename);
-}
-
+$new_todo_list = new TodoList(); // MAIN INSTANCE
 
 if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 	if($_FILES['file1']['type'] == 'text/plain') {
@@ -34,50 +66,36 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 		$filename = basename($_FILES['file1']['name']);
 		$saved_filename = $upload_dir . $filename;
 		move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
-		$new_array = open_file($saved_filename);
+		$uploaded_file = new TodoList($saved_filename);
+		$new_array = $uploaded_file->read_file($saved_filename);
+		var_dump($new_array);
 		if($_POST['overwrite'] == TRUE) {
-			save_file("todo_list.txt", $new_array);
+			$handle = fopen('todo_list.txt', "w");
+			$itemStr = implode("\n", $new_array);
+		    fwrite($handle, $itemStr);
+		    fclose($handle);
 			header("Location:todo-list.php");
 			exit(0);
 		} else {
-			$items = array_merge($items, $new_array);
-			save_file("todo_list.txt", $items);
-			var_dump($items);
+			$items = array_merge($new_todo_list->items, $new_array);
+			$handle = fopen('todo_list.txt', "w");
+			$itemStr = implode("\n", $items);
+			fwrite($handle, $itemStr);
+		    fclose($handle);
 		    header("Location:todo-list.php");
 			exit(0);
 		}
-		} else {
-			$errorMessage = "The file you are trying to load is not a txt file - please select a different file.";
+	} else {
+		$errorMessage = "The file you are trying to load is not a txt file - please select a different file.";
 	}
 }
 
-
-if (isset($_POST['newitem']) && !empty($_POST['newitem'])) {
-	$item = $_POST['newitem'];
-	array_push($items, $item);
-	save_file("todo_list.txt", $items);
-	header("Location:todo-list.php");
-	exit(0);
+if (!empty($_POST['newitem'])) {
+	$new_todo_list->add_item($_POST['newitem']);
 }
 
 if (isset($_GET['remove'])) {
-	$remove = $items[$_GET['remove']];
-    if(open_file("archive.txt") == "\n") {
-    	if($archive[0] == 0) {
-    		unset($archive);
-    	}
-
-    } else {
-    	$archive = open_file("archive.txt");
-	}
-    
-    array_push($archive, $remove);
-    var_dump($archive);
-	save_file("archive.txt", $archive);
-	unset($items[$_GET['remove']]);
-	save_file($filename, $items);
-	header("Location:todo-list.php");
-	exit(0);
+	$new_todo_list->remove_item($_GET['remove'], 'todo-list.php');
 }
 ?>
 
@@ -95,7 +113,7 @@ if (isset($_GET['remove'])) {
 
 	
 		
-	<? foreach ($items as $key => $item): ?>
+	<? foreach ($new_todo_list->items as $key => $item): ?>
 			<li><?= htmlspecialchars(strip_tags($item)) . " <a href=\"?remove=$key\">Remove</a>"; ?></li>
 	<? endforeach; ?>
 
@@ -143,8 +161,6 @@ if (isset($_GET['remove'])) {
 
 
 </form>
-
-
 
 
 </body>
