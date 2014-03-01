@@ -5,6 +5,19 @@ require_once('filestore.php');
 class AddressDataStore extends Filestore {
 
 
+function __construct($filename)
+{
+    $filename = strtolower($filename);
+    parent::__construct($filename);
+}
+
+}
+
+$addressvar = new AddressDataStore('ADDRESS_DATA_STORE.PHP');
+
+var_dump($addressvar);
+
+
 	// public $filename = '';
 
 	// function __construct($filename = '')
@@ -40,5 +53,5 @@ class AddressDataStore extends Filestore {
  //    	}
  //    	fclose($handle);
 	// }
-}
+
 ?>
