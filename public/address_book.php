@@ -1,6 +1,6 @@
 <?php
 
-require_once('address_data_store.php');
+require_once('ADDRESS_DATA_STORE.PHP');
 
 $errorMessage = '';
 
