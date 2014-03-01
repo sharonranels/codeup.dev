@@ -6,7 +6,7 @@ $errorMessage = '';
 
 $filename = 'address_book.csv';
 $run = new AddressDataStore($filename);
-$address_book = $run->read_address_book();
+$address_book = $run->read_csv();
 
 if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 	if($_FILES['file1']['type'] == 'text/csv') {
@@ -15,10 +15,10 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 		$saved_filename = $upload_dir . $filename;
 		move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 		$uploaded_file = new AddressDataStore($saved_filename);
-		$new_array = $uploaded_file->read_address_book();
+		$new_array = $uploaded_file->read_csv();
 		var_dump($new_array);
 		$address_book = array_merge($address_book, $new_array);
-		$run->writeCSV($address_book);
+		$run->write_csv($address_book);
 	    header("Location:address_book.php");
 		exit(0);
 
@@ -38,7 +38,7 @@ if(!empty($_POST)) {
 		$errorMessage = 'You must give data for everything with "*".';
 	} else {
 		array_push($address_book, $_POST);
-		$run->writeCSV($address_book);
+		$run->write_csv($address_book);
 	}
 }
 
