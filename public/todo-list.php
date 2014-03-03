@@ -15,19 +15,6 @@ class TodoList extends Filestore {
         	$this->items = $this->get_file();
 	}
 	
-	// public function save_file {
-	    // $itemStr = implode("\n", $this->items);
-	    // $handle = fopen($this->filename, "w+");
-	    // fwrite($handle, $itemStr);
-	    // fclose($handle);
-	// }
-
-	// public function read_file() {
-	//     $handle = fopen($this->filename, "r+");
-	//     $contents = fread($handle, filesize($this->filename));
-	//     fclose($handle);
-	//     return explode("\n", $contents);
-	// }
 	
 	public function get_file() {
 		if (filesize($this->filename) > 0) {
@@ -90,9 +77,15 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 	}
 }
 
-if (!empty($_POST['newitem'])) {
-	$new_todo_list->add_item($_POST['newitem']);
+if (!empty($_POST)) {
+	if ((strlen($_POST['newitem']) < 1) || (strlen($_POST['newitem']) > 240)) {
+		throw new Exception("There must be data in the input field that is between 1 and 240 characters.");
+	} else {
+		$new_todo_list->add_item($_POST['newitem']);
+	}
+	
 }
+
 
 if (isset($_GET['remove'])) {
 	$new_todo_list->remove_item($_GET['remove'], 'todo-list.php');
