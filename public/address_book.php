@@ -26,13 +26,17 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 
 
 if(!empty($_POST)) {
-	$run->validate('name', $_POST['name']);
-	$run->validate('address', $_POST['address']);
-	$run->validate('city', $_POST['city']);
-	$run->validate('state', $_POST['state']);
-	$run->validate('zip', $_POST['zip']);
-    array_push($address_book, $_POST);
-    $run->write($address_book);
+	try {
+		$run->validate('name', $_POST['name']);
+		$run->validate('address', $_POST['address']);
+		$run->validate('city', $_POST['city']);
+		$run->validate('state', $_POST['state']);
+		$run->validate('zip', $_POST['zip']);
+	    array_push($address_book, array_values($_POST));
+	    $run->write($address_book);
+	} catch (Exception $e) {
+		$errorMessage = "You must enter between 1 and 125 characters.";
+	}
 }
 
 
