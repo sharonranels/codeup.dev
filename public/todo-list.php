@@ -77,13 +77,20 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 	}
 }
 
+
 if (!empty($_POST)) {
-	if ((strlen($_POST['newitem']) < 1) || (strlen($_POST['newitem']) > 240)) {
-		throw new Exception("There must be data in the input field that is between 1 and 240 characters.");
-	} else {
-		$new_todo_list->add_item($_POST['newitem']);
-	}
+
+	try {
 	
+		if ((strlen($_POST['newitem']) < 1) || (strlen($_POST['newitem']) > 240)) {
+			throw new Exception("There must be data in the input field that is between 1 and 240 characters.");
+		} else {
+			$new_todo_list->add_item($_POST['newitem']);
+		}
+
+	} catch (Exception $e) {
+		$errorMessage = "You must enter data between 1 and 240 characters - please try again.";
+	}
 }
 
 
