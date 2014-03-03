@@ -15,7 +15,6 @@ function __construct($filename)
 
 $addressvar = new AddressDataStore('ADDRESS_DATA_STORE.PHP');
 
-var_dump($addressvar);
 
 
 	// public $filename = '';
