@@ -15,14 +15,12 @@ class AddressDataStore extends Filestore {
         if(empty($string)) {
             throw new Exception("Please enter data.");
         }
-        if($string > 125) {
+        if(strlen($string) > 125) {
             throw new Exception("You must have fewer than 125 characters.");
         }
     
     }
 
 }
-        
-
 
 ?>
