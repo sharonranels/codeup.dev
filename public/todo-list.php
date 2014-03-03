@@ -15,7 +15,7 @@ class TodoList extends Filestore {
         	$this->items = $this->get_file();
 	}
 	
-	// public function save_file() {
+	// public function save_file {
 	    // $itemStr = implode("\n", $this->items);
 	    // $handle = fopen($this->filename, "w+");
 	    // fwrite($handle, $itemStr);
@@ -31,7 +31,7 @@ class TodoList extends Filestore {
 	
 	public function get_file() {
 		if (filesize($this->filename) > 0) {
-			return $this->read_file();
+			return $this->read();
 		} else {
 			return array();
 		}
@@ -39,7 +39,7 @@ class TodoList extends Filestore {
 
 	public function remove_item($key, $redirect = FALSE) {
 		unset($this->items[$key]);
-		$this->save_file($this->items);
+		$this->write($this->items);
 		if (is_string($redirect)) {
 			header("Location: $redirect");
 			exit(0);
@@ -48,7 +48,7 @@ class TodoList extends Filestore {
 
 	public function add_item($thing) {
 		array_push($this->items, $thing);
-		$this->save_file('todo_list.txt');
+		$this->write('todo_list.txt');
 		//header("Location:todo-list.php");
 		//exit(0);
 	}
@@ -67,7 +67,7 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 		$saved_filename = $upload_dir . $filename;
 		move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 		$uploaded_file = new TodoList($saved_filename);
-		$new_array = $uploaded_file->read_file($saved_filename);
+		$new_array = $uploaded_file->read($saved_filename);
 		var_dump($new_array);
 		if($_POST['overwrite'] == TRUE) {
 			$handle = fopen('todo_list.txt', "w");

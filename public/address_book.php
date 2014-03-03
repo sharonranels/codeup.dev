@@ -24,22 +24,20 @@ if(count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 	}
 }
 
+
 if(!empty($_POST)) {
-	if(empty($_POST['name'])) {
-		$errorMessage = 'You must give data for everything with "*".';
-	} elseif (empty($_POST['address'])) {
-		$errorMessage = 'You must give data for everything with "*".';
-	} elseif (empty($_POST['city'])) {
-		$errorMessage = 'You must give data for everything with "*".';
-	} elseif (empty($_POST['state'])) {
-		$errorMessage = 'You must give data for everything with "*".';
-	} elseif (empty($_POST['zip'])) {
-		$errorMessage = 'You must give data for everything with "*".';
-	} else {
-		array_push($address_book, $_POST);
-		$run->write($address_book);
-	}
+	$run->validate('name', $_POST['name']);
+	$run->validate('address', $_POST['address']);
+	$run->validate('city', $_POST['city']);
+	$run->validate('state', $_POST['state']);
+	$run->validate('zip', $_POST['zip']);
+    array_push($address_book, $_POST);
+    $run->write($address_book);
 }
+
+
+
+
 
 if (isset($_GET['remove'])) {
 	$remove = $_GET['remove'];
