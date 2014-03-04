@@ -35,7 +35,8 @@ if(!empty($_POST)) {
 	    array_push($address_book, array_values($_POST));
 	    $run->write($address_book);
 	} catch (Exception $e) {
-		$errorMessage = "You must enter between 1 and 125 characters.";
+		//$errorMessage = "You must enter between 1 and 125 characters.";
+		echo 'Error: ' . $e->getMessage();
 	}
 }
 
