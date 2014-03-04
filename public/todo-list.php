@@ -1,5 +1,7 @@
 <?php
 
+class InvalidDataEntryException extends Exception {}
+
 require_once('filestore.php');
 
 class TodoList extends Filestore {
@@ -83,12 +85,12 @@ if (!empty($_POST)) {
 	try {
 	
 		if ((strlen($_POST['newitem']) < 1) || (strlen($_POST['newitem']) > 240)) {
-			throw new Exception("There must be data in the input field that is between 1 and 240 characters.");
+			throw new InvalidDataEntryException("There must be data in the input field that is between 1 and 240 characters.");
 		} else {
 			$new_todo_list->add_item($_POST['newitem']);
 		}
 
-	} catch (Exception $e) {
+	} catch (InvalidDataEntryException $e) {
 		$errorMessage = "You must enter data between 1 and 240 characters - please try again.";
 	}
 }
