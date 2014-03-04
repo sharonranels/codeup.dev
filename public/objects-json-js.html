@@ -70,8 +70,7 @@ var books = [
 // end loop here
 
 books.forEach(function(element, index, array) {
-	var index = index + 1;
-	console.log('Book # ' + index);
+	console.log('Book # ' + (index + 1));
 	console.log('Title: ' + element.title);
 	console.log('Author: ' + element.author.firstName + ' ' + element.author.secondname);
 	console.log('---');
