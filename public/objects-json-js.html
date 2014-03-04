@@ -1,0 +1,86 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script>
+
+// todo:
+// Create an array of object that represent books.
+// Each book should have a title and an author.
+// The book author should be an object with a firstName and lastName.
+// Be creative and add at least 5 books to the array
+
+var books = [
+	{
+		title: "Dead Zone",
+		author:
+		{
+            firstName: "Stephen",
+        	secondname: "King"
+    	}
+	},
+	
+	{
+		title: "Book B",
+		author:
+		{
+            firstName: "First2",
+        	secondname: "Last2"
+    	}
+	},
+
+	{
+		title: "Book C",
+		author:
+		{
+            firstName: "First3",
+        	secondname: "Last3"
+    	}
+	},
+	
+	{
+		title: "Book D",
+		author:
+		{
+            firstName: "First4",
+        	secondname: "Last4"
+    	},
+	},
+	
+	{
+		title: "Book E",
+		author:
+		{
+            firstName: "First5",
+        	secondname: "Last5"
+        }
+	}
+
+];
+
+// todo:
+// Loop through the array of books using .forEach and print out the specified information about each one.
+// start loop here
+    // console.log("Book #" + todo);
+    // console.log("Title: " + todo);
+    // console.log("Author: " + todo);
+    // console.log("---");
+// end loop here
+
+books.forEach(function(element, index, array) {
+	var index = index + 1;
+	console.log('Book # ' + index);
+	console.log('Title: ' + element.title);
+	console.log('Author: ' + element.author.firstName + ' ' + element.author.secondname);
+	console.log('---');
+});
+
+
+		
+
+	</script>
+
+</body>
+</html>
