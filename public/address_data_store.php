@@ -13,7 +13,7 @@ class AddressDataStore extends Filestore {
 
     public function validate($name, $string) {
         if(empty($string)) {
-            throw new Exception("Please enter data.");
+            throw new Exception('Please enter data for all lines with a "*".');
         }
         if(strlen($string) > 125) {
             throw new Exception("You must have fewer than 125 characters.");
