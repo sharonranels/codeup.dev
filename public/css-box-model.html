@@ -8,30 +8,30 @@
 	
 	<h1 id="main-header">Visible Spectrum Wavelengths</h1>
 	
-	<div class = "box" id="red">
+	<div class = "oval" id="red">
 		<p id="paragraph">620-750 nm</p>
 	</div>
 
-	<div class = "box" id="orange">
+	<div class = "oval" id="orange">
 		<p id="paragraph">590-620 nm</p>
 	</div>
 
 	
-	<div class = "box" id="yellow">
+	<div class = "oval" id="yellow">
 		<p id="paragraph">570-590 nm</p>
 	</div>
 
 	
-	<div class = "box" id="green">
+	<div class = "oval" id="green">
 		<p id="paragraph">495-570 nm</p>
 	</div>
 	
-	<div class = "box" id="blue">
+	<div class = "oval" id="blue">
 		<p id="paragraph">450-495 nm</p>
 	</div>
 
 
-	<div class = "box" id="violet">
+	<div class = "oval" id="violet">
 		<p id="paragraph">380-459 nm</p>
 	</div>
 
@@ -46,11 +46,27 @@
 		color: white;
 		font-weight: bold;
 		padding-left: 10px;
+		text-align: center;
+		padding-top: 25px;
 	}
 
+	
+	.oval {
+		width: 200px;
+	    height: 100px;
+	    background: blue;
+	    -moz-border-radius: 100px / 50px;
+	    -webkit-border-radius: 100px / 50px;
+	    border-radius: 100px / 50px;
+	    border: 1px black solid;
+	    margin-top: 10px
+	}
+
+
+
 	.box {
-		height: 75px;
-		width: 175px;
+		height: 72px;
+		width: 172px;
 		border: 1px black solid;
 		margin-top: 10px
 		
