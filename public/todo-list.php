@@ -111,20 +111,22 @@ if (isset($_GET['remove'])) {
 <body>
 
 
-	<h2>TODO List</h2>
+	<h2>To Do List</h2>
 	<ul>
 
 	
 		
 	<? foreach ($new_todo_list->items as $key => $item): ?>
-			<li><?= htmlspecialchars(strip_tags($item)) . " <a href=\"?remove=$key\">Remove</a>"; ?></li>
+			<li><?= htmlspecialchars(strip_tags($item)) . " <a id='removeLink' href=\"?remove=$key\">Remove</a>"; ?></li>
 	<? endforeach; ?>
 
 
 
 	</ul>
 
-<h2>Add Tasks to Your TODO List</h2>
+	<hr>
+
+<h2>Add Tasks to Your To Do List</h2>
 	
 <form method="POST" action="todo-list.php">
     <p>
@@ -154,7 +156,7 @@ if (isset($_GET['remove'])) {
  -->
 
    <p>
-        <label for="overwrite">Check here if you want to overwrite the file with this new information: </label>
+        <label for="overwrite">Check here if you want to <mark><em><strong>completely overwrite</strong></em></mark> the file with this new information: </label>
         <input type="checkbox" id="overwrite" name="overwrite">
     </p>
         
