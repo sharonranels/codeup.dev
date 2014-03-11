@@ -3,6 +3,12 @@
     <title>DOM: Query and Modify</title>
 </head>
 <body>
+    
+    <button id="btn1">Click to Change Header Text</button>
+    <button id="btn2">Click to Change SubHeader Color</button>
+    <button id="btn3">Click to Change Item Colors</button>
+    <button id="btn4">Click to Change Text</button>
+
 
     <h1 id="main-header">Hello World!</h1>
     <ul>
@@ -16,42 +22,77 @@
     <p class="sub-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <script>
+        
+        var mainHeader = document.getElementById('main-header');
+        var subHeader = document.getElementById('sub-header');
+        var listItems = document.getElementsByTagName('li');
+        var subParagraphs = document.getElementsByClassName('sub-paragraph');
+
+        var listener1 = function () {
+            mainHeader.innerHTML = "JavaScript is Cool";
+        }
+        var btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', listener1, false);
+
+
+        var listener2 = function () {
+            subHeader.style['color'] = 'blue';
+        }
+        var btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click', listener2, false);
+
+        var listener3 = function () {
+            for (var i = 0; i < listItems.length; i++) {
+            
+                var dbId = listItems[i].attributes['data-dbid'].value;
+            
+                if (dbId == "1") {
+                    listItems[i].style['color'] = "blue";
+                } else if (i % 2 == 0) {
+                    listItems[i].style['color'] = "grey";
+                }
+
+            }
+        }
+        var btn3 = document.getElementById('btn3');
+        btn3.addEventListener('click', listener3, false);
+
+        var listener4 = function () {
+            subParagraphs[0].innerHTML = "Mission Accomplished!";
+        }
+        var btn4 = document.getElementById('btn4');
+        btn4.addEventListener('click', listener4, false);
 
         // todo: get the main header element by id
-        var mainHeader = document.getElementById('main-header');
 
         // todo: set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "JavaScript is Cool";
+        //mainHeader.innerHTML = "JavaScript is Cool";
 
         // todo: get the sub header element by id
-        var subHeader = document.getElementById('sub-header');
 
         // todo: set the text color of subHeader to blue
-        subHeader.style['color'] = 'blue';
+        //subHeader.style['color'] = 'blue';
 
         // todo: get all list items
-        var listItems = document.getElementsByTagName('li');
 
         // todo: set text color on every other list item to grey
         // todo: set text color of li with dbid = 1 to blue
-        for (var i = 0; i < listItems.length; i++) {
+        // for (var i = 0; i < listItems.length; i++) {
         
-            var dbId = listItems[i].attributes['data-dbid'].value;
+        //     var dbId = listItems[i].attributes['data-dbid'].value;
         
-            if (dbId == "1") {
-                listItems[i].style['color'] = "blue";
-            } else if (i % 2 == 0) {
-                listItems[i].style['color'] = "grey";
-            }
+        //     if (dbId == "1") {
+        //         listItems[i].style['color'] = "blue";
+        //     } else if (i % 2 == 0) {
+        //         listItems[i].style['color'] = "grey";
+        //     }
 
-        }
+        // }
 
         // todo: get all elements with class name sub-paragraph
-        var subParagraphs = document.getElementsByClassName('sub-paragraph');
 
         // todo: change the text in the first sub paragraph to "Mission Accomplished!"
 
-        subParagraphs[0].innerHTML = "Mission Accomplished!";
 
     </script>
 
