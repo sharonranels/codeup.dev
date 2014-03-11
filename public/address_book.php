@@ -57,12 +57,35 @@ if (isset($_GET['remove'])) {
 
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Address Book</title>
+
+	<!-- Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<style>
+	
+	body {
+	background-image: url(/img/notebook.png);
+}
+
+
+
+
+</style>
+
 </head>
 <body>
+
+<div class="container">
+
 	<h2>Address Book</h2>
 
-<table>
+<table class="table">
 	<tr>
 		<td>Name</td>
 		<td>Address</td>
@@ -90,20 +113,23 @@ if (isset($_GET['remove'])) {
 </h3>
 
 
-<h2>Address Book Additions</h2>
+<h2>Address Book Additions - "*" signifies required data</h2>
 
+<table class="table">
 <p>
 <form method="POST" action="address_book.php">
-	* Name: <input type="text" name="name"><br>
-	* Address: <input type="text" name="address"><br>
-	* City: <input type="text" name="city"><br>
-	* State: <input type="text" name="state"><br>
-	* Zip: <input type="text" name="zip"><br>
-	Phone: <input type="text" name="phone"><br>
+	* <strong>Name</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"><br><br>
+	* <strong>Address</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="address"><br><br>
+	* <strong>City</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="city"><br><br>
+	* <strong>State</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="state"><br><br>
+	* <strong>Zip</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="zip"><br><br>
+	Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone"><br><br>
 	<input type="submit">
 </form>
 
 </p>	
+
+</table>
 
 <form method="POST" enctype="multipart/form-data" action="">
     <p>
@@ -117,7 +143,14 @@ if (isset($_GET['remove'])) {
 
 
 </form>
-	
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>	
 
 </body>
 </html>
