@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script src="/js/moment.js"></script>
+	<script>
+
+		// get the current date/time with moment
+		var now = moment();
+		console.log(moment);
+
+		// getting calendar date strings
+		console.log(now.calendar());
+
+		// formatting dates
+		console.log(now.format("dddd, MMMM Do YYYY, h:mm:ss a"));
+		console.log(now.format("dddd, Do of MMMM YYYY, h:mm:ss a"));
+		console.log(now.format("ddd, MMM Do YYYY, h:mm:ss a"));
+
+
+		// date addition
+		console.log(moment().add('days', 1).fromNow());
+		console.log(moment().add('weeks', 40).fromNow());
+
+		// date subtraction
+		console.log(moment().subtract('days', 1).fromNow());
+		console.log(moment().subtract('weeks', 1).fromNow());
+
+		// get a specific date
+		var codeup = moment("2-4-2014", "MM-DD-YYYY");
+		console.log(codeup.fromNow());
+
+
+
+	</script>
+
+</body>
+</html>

@@ -140,9 +140,9 @@ if (isset($_GET['remove'])) {
 
 </form>
 
-<h1>
+<h3>
 <?= $errorMessage; ?>	
-</h1>
+</h3>
 
 <form method="POST" enctype="multipart/form-data" action="">
     <p>

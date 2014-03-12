@@ -1,0 +1,14 @@
+<?php
+
+
+// Create a new instance of Conversation
+$chat = new Conversation();
+
+// Set the name
+$chat->name = '                       Spaces are c00l!              ';
+
+// Say Hello
+echo $chat->say_hello(TRUE);
+
+
+?>

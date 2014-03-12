@@ -1,3 +1,6 @@
+get car inspected
 task 1
-wash cat
-dust
+get car inspected
+task 3
+get car inspected
+get car inspected

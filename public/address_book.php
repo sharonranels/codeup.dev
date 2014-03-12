@@ -69,9 +69,7 @@ if (isset($_GET['remove'])) {
 
 <style>
 	
-	body {
-	background-image: url(/img/notebook.png);
-}
+
 
 
 
@@ -85,14 +83,15 @@ if (isset($_GET['remove'])) {
 
 	<h2>Address Book</h2>
 
-<table class="table">
+<table class="table table-striped">
 	<tr>
-		<td>Name</td>
-		<td>Address</td>
-		<td>City</td>
-		<td>State</td>
-		<td>Zip</td>
-		<td>Phone</td>
+		<td><strong>Name</strong></td>
+		<td><strong>Address</strong></td>
+		<td><strong>City</strong></td>
+		<td><strong>State</strong></td>
+		<td><strong>Zip</strong></td>
+		<td><strong>Phone</strong></td>
+		<td><strong>Remove Item?</strong></td>
 	</tr>
 
 <? if(!empty($address_book)) : ?>
@@ -113,10 +112,11 @@ if (isset($_GET['remove'])) {
 </h3>
 
 
-<h2>Address Book Additions - "*" signifies required data</h2>
+<h2>Address Book Additions</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;("*" signifies required data)</p><br>
 
 <table class="table">
-<p>
+<!-- <p> -->
 <form method="POST" action="address_book.php">
 	* <strong>Name</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"><br><br>
 	* <strong>Address</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="address"><br><br>
@@ -127,7 +127,7 @@ if (isset($_GET['remove'])) {
 	<input type="submit">
 </form>
 
-</p>	
+<!-- </p>	 -->
 
 </table>
 
