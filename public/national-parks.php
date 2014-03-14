@@ -49,11 +49,16 @@ if (isset($_GET['desort_column'])) {
 
 	<table class="table table-striped">
 		<tr>
-			<td><strong>Name</strong><a href='?sort_column=name'><br><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=name'><span class="glyphicon glyphicon-arrow-down"></span></a></td>
-			<td><strong>Location</strong><br><a href='?sort_column=location'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=location'><span class="glyphicon glyphicon-arrow-down"></td>
-			<td><strong>Description</strong><br><a href='?sort_column=description'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=description'><span class="glyphicon glyphicon-arrow-down"></td>
-			<td><strong>Date</strong><br><a href='?sort_column=date'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=date'><span class="glyphicon glyphicon-arrow-down"></td>
-			<td><strong>Area</strong><br><a href='?sort_column=area_in_acres'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=area_in_acres'><span class="glyphicon glyphicon-arrow-down"></td>
+			
+			<td style="width:15%;"><strong>Name</strong><a href='?sort_column=name'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=name'><span class="glyphicon glyphicon-arrow-down"></span></a></td>
+			
+			<td style="width:15%;"><strong>Location</strong><a href='?sort_column=location'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=location'><span class="glyphicon glyphicon-arrow-down"></td>
+			
+			<td style="width:45%;"><strong>Description</strong><a href='?sort_column=description'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=description'><span class="glyphicon glyphicon-arrow-down"></td>
+			
+			<td style="width:15%;"><strong>Date</strong><a href='?sort_column=date'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=date'><span class="glyphicon glyphicon-arrow-down"></td>
+			
+			<td style="width:10%;"><strong>Area</strong><a href='?sort_column=area_in_acres'><span class="glyphicon glyphicon-arrow-up"></span></a><a href='?desort_column=area_in_acres'><span class="glyphicon glyphicon-arrow-down"></td>
 		</tr>
 
 	<? if(!empty($result)) : ?>
