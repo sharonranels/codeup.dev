@@ -1,6 +1,6 @@
 <?php
 
-$limit = 2;
+$limit = 10;
 
 //Get new instance of MySQLi object
 $mysqli = @new mysqli('127.0.0.1', 'codeup', 'codeup', 'todo_list');
@@ -63,19 +63,6 @@ while ($stmt->fetch()) {
 	$rows[] = array('id' => $id, 'item' => $item);
 }
 
-
-
-/*
-if (!empty($_GET['sort_column'])) {
-	$sort_column = $_GET['sort_column'];
-	$sort_order = $_GET['sort_order'];
-// Retreieve the To Do list data using SELECT
-
-	$result = $mysqli->query("SELECT id, item FROM list_items ORDER BY $sort_column $sort_order");
-} else {
-	$result = $mysqli->query("SELECT id, item FROM list_items");
-}
-*/
 ?>
 
 
