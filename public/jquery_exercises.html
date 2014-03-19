@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Exercises</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1 class="codeup">Sharon's Jobs</h1>
+
+    <p>This gives a little information about Sharon's jobs.</p>
+
+    <div class="row">
+        <div class="col-sm-9 debug">Mercury Retail Services / TNG<br>&nbsp;&nbsp;
+            <button type="button" class="btn btn-default button_background" data-toggle="collapse" data-target="#director"><em><strong><u>Director</u></strong></em>, San Antonio TX</button>
+              
+              <div id="director" class="collapse codeup">
+                <ul>
+                  <li><strong>Direct Reports</strong> - 3</li>
+                  <li><strong>Clients/Partners</strong> included HEB, Sony Pictures, Ingram Entertainment, Albertsons, AEC, COKeM, Echo Bridge</li>
+                  <li><strong>Responsibilities</strong>:
+                  <ul>
+                    <li>Development of web-based data-collection surveys for in-field merchandisers (NaturalInsight.com and CRCSecure.com)</li>
+                    <li>Weekly client reports</li>
+                    <li>Contract negotiations</li>
+                    <li>3rd-party project development and implementation</li>
+                    <li>Training development and implementation for in-field merchandisers</li>
+                    </ul></li>
+                </ul>
+              </div>
+        
+              <p class="codeup"><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account Manager</strong></em>, Houston TX</p>
+              
+              </div>
+        
+        <div class="col-sm-3 text-right">
+          <strong>2011 - 2014</strong>
+        </div>
+          </div> <!-- end job 1 -->
+
+
+
+
+    <!-- jQuery on local - only use if no access to internet -->
+    <script src="/js/jquery.js"></script>
+
+    <script>
+    
+    $('document').ready(function() {
+      $('.codeup').css('border-color', '#F00');
+      $('.codeup').css('border-width', '1px');
+      $('.codeup').css('border-style', 'solid');
+    });
+    
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
