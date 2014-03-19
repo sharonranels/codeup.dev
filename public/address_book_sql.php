@@ -10,24 +10,20 @@ if ($mysqli->connect_errno) {
 $errorMessage = "";
 
 
-// Sort columns
-
-if (!empty($_GET['sort_column'])) {
-  $sort_column = $_GET['sort_column'];
-  $sort_order = $_GET['sort_order'];
-
-// Retreieve the National Parks data using SELECT
-
-  $result = $mysqli->query("SELECT name, street, city, state, zip FROM names_and_addresses ORDER BY $sort_column $sort_order");
-} else {
-  $result = $mysqli->query("SELECT name, street, city, state, zip FROM names_and_addresses");
-}
-
 
 // Gather posted data, validate and place into an array in the data base
 
 if (!empty($_POST)) {
 
+// Check to see if post calls for a removal
+  if(isset($_POST['removeID'])) {
+    $id = $_POST['removeID'];
+    $stmt = $mysqli->prepare("DELETE FROM names_and_addresses WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+} else {
+
+// Otherwise add to data base
   try {
     if ((empty($_POST["name"])) || (strlen("name" > 50))) {
       throw new Exception("Name must be within 1 and 50 characters - please retry");
@@ -53,15 +49,26 @@ if (!empty($_POST)) {
       $stmt = $mysqli->prepare("INSERT INTO names_and_addresses (name, street, city, state, zip) VALUES (?, ?, ?, ?, ?)");
       $stmt->bind_param("sssss", $name, $street, $city, $state, $zip);
       $stmt->execute();
-      $mysqli->close();
     }
   } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     }
+  }
 
 }
 
+// Sort columns
 
+if (!empty($_GET['sort_column'])) {
+  $sort_column = $_GET['sort_column'];
+  $sort_order = $_GET['sort_order'];
+
+// Retreieve the National Parks data using SELECT
+
+  $result = $mysqli->query("SELECT id, name, street, city, state, zip FROM names_and_addresses ORDER BY $sort_column $sort_order");
+} else {
+  $result = $mysqli->query("SELECT id, name, street, city, state, zip FROM names_and_addresses");
+}
 
 
 
@@ -88,7 +95,65 @@ if (!empty($_POST)) {
   </head>
   <body>
 
+<!-- Page container -->
+
     <div class="container">
+
+    <h2>Address Book</h2>
+
+<!-- Warning if data is not within parameters when adding new info -->
+
+    <? if (!empty($errorMessage)): ?>
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Warning!&nbsp;</strong><?= $errorMessage; ?>
+      </div>
+    <? endif; ?>
+
+<!-- Add new info -->
+
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Add more addresses
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Add more addresses</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form" method="post">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="location">street</label>
+            <input type="text" class="form-control" id="location" name="street">
+          </div>
+          <div class="form-group">
+            <label for="description">City</label>
+            <input type="text" class="form-control" id="city" name="city">
+          </div>
+          <div class="form-group">
+            <label for="date">State</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="XX">
+          </div>
+          <div class="form-group">
+            <label for="area_in_acres">Zip</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="99999 or 99999-9999">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <table id="header-fixed" class="table table-striped"></table>
 
@@ -107,22 +172,28 @@ if (!empty($_POST)) {
           <a href='?sort_column=city&amp;sort_order=ASC'><span class="glyphicon glyphicon-arrow-up"></span></a>
           <a href='?sort_column=city&amp;sort_order=DESC'><span class="glyphicon glyphicon-arrow-down"></td>
         
-        <td style="width:20%;"><strong>State</strong>
+        <td style="width:10%;"><strong>State</strong>
           <a href='?sort_column=state&amp;sort_order=ASC'><span class="glyphicon glyphicon-arrow-up"></span></a>
           <a href='?sort_column=state&amp;sort_order=DESC'><span class="glyphicon glyphicon-arrow-down"></td>
         
-        <td style="width:20%;"><strong>Zip</strong>
+        <td style="width:10%;"><strong>Zip</strong>
           <a href='?sort_column=zip&amp;sort_order=ASC'><span class="glyphicon glyphicon-arrow-up"></span></a>
           <a href='?sort_column=zip&amp;sort_order=DESC'><span class="glyphicon glyphicon-arrow-down"></td>
+
+        <td style="width:20%;"><strong>Remove?</strong></td>
         </tr>
       </thead>
       <tbody>
         <? if(!empty($result)) : ?>
           <? while ($row = $result->fetch_array(MYSQLI_ASSOC)) :?>
             <tr>
-            <? foreach ($row as $field) : ?>
-              <td><?= $field?></td>
-              <? endforeach;?>
+              <td><?= $row['name']; ?></td>
+              <td><?= $row['street']; ?></td>
+              <td><?= $row['city']; ?></td>
+              <td><?= $row['state']; ?></td>
+              <td><?= $row['zip']; ?></td>
+              <td> <button onclick="removeById(<?= $row['id']; ?>)">Remove Item</button>
+              </td>
             </tr>
           <? endwhile;?>
         <? endif;?>
@@ -130,9 +201,27 @@ if (!empty($_POST)) {
     </table>
 
 
+<hr>
+
+<form id="removeForm" method="post">
+  <input id="removeID" type="hidden" name="removeID" Value="">
+</form>
+
+<script>
+  
+  var form = document.getElementById('removeForm');
+  var removeID = document.getElementById('removeID');
+
+  function removeById(id) {
+    removeID.value = id;
+    form.submit();
+  }
+</script>
 
 
     </div>
+
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

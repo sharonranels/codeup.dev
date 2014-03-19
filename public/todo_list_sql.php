@@ -137,11 +137,14 @@ while ($stmt->fetch()) {
 	</div>
 		
 	<? if(!empty($rows)) : ?>
-		<? foreach ($rows as $items) :?>
-			<ul>
-				<li><?= $items['item']?> <button onclick="removeById(<?= $items['id']; ?>)">Remove Item</button></li>
-			</ul>
-		<? endforeach;?>
+		<ul>
+			<? foreach ($rows as $items) :?>
+				<li>
+					<?= $items['item']?>
+					<button onclick="removeById(<?= $items['id']; ?>)">Remove Item</button>
+				</li>
+			<? endforeach;?>
+		</ul>
 	<? endif;?>
 		
 <div class="pager">

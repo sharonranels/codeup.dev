@@ -55,7 +55,7 @@ if (isset($_GET['remove'])) {
 ?>
 
 
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,9 +115,50 @@ if (isset($_GET['remove'])) {
 <h2>Address Book Additions</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;("*" signifies required data)</p><br>
 
-<table class="table">
-<!-- <p> -->
-<form method="POST" action="address_book.php">
+<form role="form" method="POST" action="address_book.php">
+  <div class="form-group">
+    <label for="Name">* Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="address">* Address</label>
+    <input type="text" class="form-control" id="address" placeholder="Enter address">
+  </div>
+    <div class="form-group">
+    <label for="city">* City</label>
+    <input type="text" class="form-control" id="city" placeholder="Enter city">
+  </div>  <div class="form-group">
+    <label for="state">* State</label>
+    <input type="text" class="form-control" id="state" placeholder="Enter state">
+  </div>  <div class="form-group">
+    <label for="zip">* Zip</label>
+    <input type="text" class="form-control" id="zip" placeholder="Enter zip">
+  </div>
+    <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="tel" class="form-control" id="phone" placeholder="Enter phone">
+  </div>
+	<input type="submit">
+
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+
+
+<!-- <table class="table">
+<! <p> -->
+<!-- <form method="POST" action="address_book.php">
 	* <strong>Name</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"><br><br>
 	* <strong>Address</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="address"><br><br>
 	* <strong>City</strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="city"><br><br>
@@ -126,10 +167,10 @@ if (isset($_GET['remove'])) {
 	Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone"><br><br>
 	<input type="submit">
 </form>
-
+ -->
 <!-- </p>	 -->
 
-</table>
+<!-- </table> -->
 
 <form method="POST" enctype="multipart/form-data" action="">
     <p>
