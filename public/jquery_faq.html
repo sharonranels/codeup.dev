@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>National Parks with jQuery</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+  <style>
+  
+  .invisible {
+    display: none;
+  }
+  
+  
+
+  </style>
+
+  </head>
+  <body>
+    
+    <div>
+      <dl>
+        <dt>Park 1</dt>
+          <dd>Description 1</dd>
+        <dt>Park 2</dt>
+          <dd>Description 2</dd>
+        <dt>Park 3</dt>
+          <dd>Description 3</dd>
+        <dt>Park 4</dt>
+          <dd>Description 4</dd>
+        <dt>Park 5</dt>
+          <dd>Description 5</dd>
+        <dt>Park 6</dt>
+          <dd>Description 6</dd>
+        <dt>Park 7</dt>
+          <dd>Description 7</dd>
+        <dt>Park 8</dt>
+          <dd>Description 8</dd>
+        <dt>Park 9</dt>
+          <dd>Description 9</dd>
+        <dt>Park 10</dt>
+          <dd>Description 10</dd>
+        </dt>
+      </dl>
+    </div>
+
+
+
+    <!-- jQuery on local - only use if no access to internet -->
+    <script src="/js/jquery.js"></script>
+
+    <script>
+
+      $('document').ready(function() {
+        $('dd').addClass('invisible');
+        $('dt').on('click', function() {
+          $(this).next().toggleClass('invisible');
+        });
+
+      });
+    
+    
+    
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
