@@ -41,8 +41,13 @@
         // this causes the autosave function to be called whenever
         // a key up event occurs in the textarea
         // we will learn about events in the DOM lessons
-        var textarea = document.getElementById('important');
-        textarea.addEventListener('keyup', autosave, false);
+       
+    $('document').ready(function() {
+        $('#important').keyup(autosave);
+    });
+
+        // var textarea = document.getElementById('important');
+        // textarea.addEventListener('keyup', autosave, false);
 
     </script>
 
