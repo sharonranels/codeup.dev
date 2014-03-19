@@ -15,11 +15,21 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+  
+  <style>
+  
+  .clickable {
+    cursor: pointer;
+  }
+
+
+  </style>
+
   </head>
   <body>
-    <h1 class="codeup">Sharon's Jobs</h1>
+    <h1 class="codeup clickable">Sharon's Jobs</h1>
 
-    <p>This gives a little information about Sharon's jobs.</p>
+    <p class="clickable">This gives a little information about Sharon's jobs.</p>
 
     <div class="row">
         <div class="col-sm-9 debug">Mercury Retail Services / TNG<br>&nbsp;&nbsp;
@@ -56,11 +66,30 @@
     <script src="/js/jquery.js"></script>
 
     <script>
+
+
     
     $('document').ready(function() {
-      $('.codeup').css('border-color', '#F00');
-      $('.codeup').css('border-width', '1px');
-      $('.codeup').css('border-style', 'solid');
+      $('h1').click(function() {
+        $(this).css('background-color', '#FF0');
+      });
+    });
+
+    $('document').ready(function() {
+      $('p').dblclick(function() {
+        $(this).css('font-size', '18px');
+      });
+    });
+
+    $('document').ready(function() {
+      $('li').hover(
+        function() {
+          $(this).css('color', 'red');
+        },
+        function() {
+          $(this).css('color', 'white');
+        }
+      );
     });
     
     </script>
