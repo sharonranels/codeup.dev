@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Whack</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+<style>
+  
+  #game-board {
+    margin: 10px auto;
+    width: 456px;
+  }
+
+  .mole-hole {
+    border: 1px solid black;
+    float: left;
+    height: 150px;
+    width: 150px;
+  }
+ 
+  img {
+    height: 150px;
+    width: 150px;
+    display: none;
+  }
+  
+  body {
+    text-align: center;
+  }
+
+
+  </style>
+
+
+
+
+
+  </head>
+  <body>
+    
+
+    <h1>Whack-A-Mole</h1>
+
+
+      <div id="game-board">
+
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+        
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+        
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+        
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+
+        <div class="mole-hole">  
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+
+        <div class="mole-hole">
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+
+        <div class="mole-hole">  
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+
+        <div class="mole-hole">  
+          <img src="/img/starmole.jpeg" alt="mole">
+        </div>
+        
+      </div>
+
+      <h3 id="scoreHolder">Score: 0</h3>
+    
+
+    <!-- jQuery on local - only use if no access to internet -->
+    <!--script src="/js/jquery.js"></script> -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+      var score = 0;
+      var misses = 0;
+
+
+      $('img').click(function() {
+          $(this).hide();
+          score = score + 1;
+          $("#scoreHolder").text("Score: " + score);
+        });
+
+      // $('img').fadeIn();
+
+      var holes = $('.mole-hole');
+      
+      setInterval(function () {
+      $('.mole-hole').children().fadeOut();
+        var rand = Math.floor(Math.random() * holes.length);
+          $(holes[rand]).children().fadeIn(); 
+      }, 3000);
+
+
+
+    </script>
+  
+  </div>
+
+  </body>
+</html>
