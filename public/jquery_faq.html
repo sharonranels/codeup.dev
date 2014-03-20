@@ -18,7 +18,7 @@
   
   <style>
   
-  .invisible {
+  dd {
     display: none;
   }
   
@@ -28,48 +28,94 @@
 
   </head>
   <body>
-    
+    <div class="container">
+
+    <h1>Parks List</h1>
+
     <div>
+      <h2>National Parks FAQ</h2>
       <dl>
-        <dt>Park 1</dt>
+        <dt>National Park 1</dt>
           <dd>Description 1</dd>
-        <dt>Park 2</dt>
+        <dt>National Park 2</dt>
           <dd>Description 2</dd>
-        <dt>Park 3</dt>
+        <dt>National Park 3</dt>
           <dd>Description 3</dd>
-        <dt>Park 4</dt>
+        <dt>National Park 4</dt>
           <dd>Description 4</dd>
-        <dt>Park 5</dt>
+        <dt>National Park 5</dt>
           <dd>Description 5</dd>
-        <dt>Park 6</dt>
+        <dt>National Park 6</dt>
           <dd>Description 6</dd>
-        <dt>Park 7</dt>
+        <dt>National Park 7</dt>
           <dd>Description 7</dd>
-        <dt>Park 8</dt>
+        <dt>National Park 8</dt>
           <dd>Description 8</dd>
-        <dt>Park 9</dt>
+        <dt>National Park 9</dt>
           <dd>Description 9</dd>
-        <dt>Park 10</dt>
+        <dt>National Park 10</dt>
           <dd>Description 10</dd>
-        </dt>
       </dl>
     </div>
 
+    <div>
+      <h3>Unordered List 1</h3>
+        <ul>
+          <li>Fact 1</li>
+          <li>Fact 2</li>
+          <li>Fact 3</li>
+          <li>Fact 4</li>
+        </ul>
+      <h3>Unordered List 2</h3>
+        <ul>
+          <li>Fact 1</li>
+          <li>Fact 2</li>
+          <li>Fact 3</li>
+          <li>Fact 4</li>
+        </ul>
+      <h3>Unordered List 3</h3>
+        <ul>
+          <li>Fact 1</li>
+          <li>Fact 2</li>
+          <li>Fact 3</li>
+          <li>Fact 4</li>
+        </ul>
+    </div>
+    
 
+    </div>
 
     <!-- jQuery on local - only use if no access to internet -->
     <script src="/js/jquery.js"></script>
 
     <script>
 
-      $('document').ready(function() {
-        $('dd').addClass('invisible');
-        $('dt').on('click', function() {
-          $(this).next().toggleClass('invisible');
+      // $('document').ready(function() {
+        // $('dd').addClass('invisible');
+        // $('dt').on('click', function() {
+        //   $(this).next().toggleClass('invisible');
+        // });
+      // });
+
+        // Make each first list item bold
+        $('ul').each(function() {
+          $(this).children().first().css('font-weight', 'bold');
+        });
+      
+        // Remove class "invisible" and use "toggle" and "hide" instead
+        $('dt').click(function() {
+          $(this).next().toggle();
         });
 
-      });
-    
+        $('li').click(function() {
+          $(this).parent().hide();
+        });
+
+
+        // $('li').click(function() {
+        //   $(this).parent().addClass('invisible');
+        // });
+
     
     
     </script>
