@@ -97,6 +97,10 @@
         // });
       // });
 
+        // $('li').click(function() {
+        //   $(this).parent().addClass('invisible');
+        // });
+
         // Make each first list item bold
         $('ul').each(function() {
           $(this).children().first().css('font-weight', 'bold');
@@ -104,17 +108,14 @@
       
         // Remove class "invisible" and use "toggle" and "hide" instead
         $('dt').click(function() {
-          $(this).next().toggle();
+          $(this).next().fadeToggle();
         });
 
-        $('li').click(function() {
-          $(this).parent().hide();
+        $('h3').click(function() {
+          $(this).next().children().fadeToggle();
         });
 
 
-        // $('li').click(function() {
-        //   $(this).parent().addClass('invisible');
-        // });
 
     
     
