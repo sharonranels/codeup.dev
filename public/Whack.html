@@ -49,9 +49,6 @@
   </style>
 
 
-
-
-
   </head>
   <body>
     
@@ -144,8 +141,9 @@
             setTimeout(function() {
                 clearInterval(moleGame);
                 clearInterval(endtime);
+                $('img').hide();
                 alert("TIME OVER!");
-            }, 30000);
+            }, 32000);
         }
 
         function timer() {
