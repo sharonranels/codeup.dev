@@ -23,6 +23,11 @@
     width: 456px;
   }
 
+  #scoreboard {
+    margin: 10px auto;
+    width: 456px;
+  }
+
   .mole-hole {
     border: 1px solid black;
     float: left;
@@ -54,6 +59,13 @@
     <h1>Whack-A-Mole</h1>
 
       <button onclick="startGame()">START</button>
+
+      <div id="scoreboard">
+        <div id="scoreHolder">Score: 0</div>
+        <div id="missHolder">Misses: 0</div>
+        <div id="timeHolder">Time Left: 0</div>
+        <div id="highScore">High Score: 0</div>
+      </div>
 
       <div id="game-board">
 
@@ -95,9 +107,6 @@
         
       </div>
 
-      <h3 id="scoreHolder">Score: 0</h3>
-      <h3 id="missHolder">Misses: 0</h3>
-      <h3 id="timeHolder">Time Left: 0</h3>
     
 
     <!-- jQuery on local - only use if no access to internet -->
@@ -111,57 +120,74 @@
 
 
     <script>
+        var moleGame;
+        var endtime;
+        var score = 0;
+        var misses = 0;
+        var iteration = 0;
+        var elapsetime = 30;
+        var highScore = 0;
+        
+        var holes = $('.mole-hole');
 
-      var moleGame;
-      var endtime;
-      var score = 0;
-      var misses = 0;
-      var iteration = 0;
-      var elapsetime = 30;
-
-      $('img').click(function() {
-          $(this).hide();
-          score = score + 1;
-          $("#scoreHolder").text("Score: " + score);
+        $('img').click(function() {
+            $(this).hide();
+            score = score + 1;
+            $("#scoreHolder").text("Score: " + score);
         });
 
       // $('img').fadeIn();
 
-      var holes = $('.mole-hole');
       
 
-      function countdown() {
-        setTimeout(function() {
-          clearInterval(moleGame);
-          clearInterval(endtime);
-          alert("TIME OVER!");
-        }, 30000);
-      }
-
-      function timer() {
-        $("#timeHolder").text("Time Left: " + elapsetime);
-        elapsetime--;
-      }
-
-
-      function playGame() {
-        $('.mole-hole').children().fadeOut();
-          var rand = Math.floor(Math.random() * holes.length);
-            $(holes[rand]).children().fadeIn(); 
-          $("#missHolder").text("Misses: " + misses);
-          iteration = iteration + 1;
-          misses = iteration - score;
+        function countdown() {
+            setTimeout(function() {
+                clearInterval(moleGame);
+                clearInterval(endtime);
+                alert("TIME OVER!");
+            }, 30000);
         }
 
-      function startGame() {
-        endtime = setInterval(timer, 925);
-        moleGame = setInterval(playGame, 2000);
-        setTimeout(function() {
-          clearInterval(moleGame);
-          moleGame = setInterval(playGame, 1000);
-        }, 10000);
-        countdown();
-      };
+        function timer() {
+            $("#timeHolder").text("Time Left: " + elapsetime);
+            elapsetime--;
+        }
+
+
+        function playGame() {
+            var rand = Math.floor(Math.random() * holes.length);
+            holes.children().fadeOut();
+            $(holes[rand]).children().fadeIn(); 
+            $("#missHolder").text("Misses: " + misses);
+            iteration = iteration + 1;
+            misses = iteration - score;
+        }
+
+        function startGame() {
+            if (highScore < score) {
+                highScore = score;
+                $("#highScore").text("High Score: " + highScore);
+            }
+
+            score = 0;
+            misses = 0;
+            elapsetime = 30;
+            iteration = 0;
+            $("#missHolder").text("Misses: " + misses);
+            $("#timeHolder").text("Time Left: " + elapsetime);
+            $("#scoreHolder").text("Score: " + score);
+            
+            endtime = setInterval(timer, 1000);
+            moleGame = setInterval(playGame, 2000);
+        
+            setTimeout(function() {
+                clearInterval(moleGame);
+                moleGame = setInterval(playGame, 1000);
+            }, 10000);
+            
+            countdown();
+            
+        }
 
 
     </script>
