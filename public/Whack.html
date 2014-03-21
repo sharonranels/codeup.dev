@@ -53,6 +53,7 @@
 
     <h1>Whack-A-Mole</h1>
 
+      <button onclick="startGame()">START</button>
 
       <div id="game-board">
 
@@ -95,7 +96,8 @@
       </div>
 
       <h3 id="scoreHolder">Score: 0</h3>
-      <h3 id="missHolder">Score: 0</h3>
+      <h3 id="missHolder">Misses: 0</h3>
+      <h3 id="timeHolder">Time Left: 0</h3>
     
 
     <!-- jQuery on local - only use if no access to internet -->
@@ -110,10 +112,12 @@
 
     <script>
 
+      var moleGame;
+      var endtime;
       var score = 0;
       var misses = 0;
       var iteration = 0;
-
+      var elapsetime = 30;
 
       $('img').click(function() {
           $(this).hide();
@@ -125,15 +129,39 @@
 
       var holes = $('.mole-hole');
       
-      setInterval(function () {
-      $('.mole-hole').children().fadeOut();
-        var rand = Math.floor(Math.random() * holes.length);
-          $(holes[rand]).children().fadeIn(); 
-        iteration = iteration + 1;
-        misses = iteration - score;
-        $("#missHolder").text("Misses: " + misses);
-      }, 3000);
 
+      function countdown() {
+        setTimeout(function() {
+          clearInterval(moleGame);
+          clearInterval(endtime);
+          alert("TIME OVER!");
+        }, 30000);
+      }
+
+      function timer() {
+        $("#timeHolder").text("Time Left: " + elapsetime);
+        elapsetime--;
+      }
+
+
+      function playGame() {
+        $('.mole-hole').children().fadeOut();
+          var rand = Math.floor(Math.random() * holes.length);
+            $(holes[rand]).children().fadeIn(); 
+          $("#missHolder").text("Misses: " + misses);
+          iteration = iteration + 1;
+          misses = iteration - score;
+        }
+
+      function startGame() {
+        endtime = setInterval(timer, 925);
+        moleGame = setInterval(playGame, 2000);
+        setTimeout(function() {
+          clearInterval(moleGame);
+          moleGame = setInterval(playGame, 1000);
+        }, 10000);
+        countdown();
+      };
 
 
     </script>
