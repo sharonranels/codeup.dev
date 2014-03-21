@@ -95,6 +95,7 @@
       </div>
 
       <h3 id="scoreHolder">Score: 0</h3>
+      <h3 id="missHolder">Score: 0</h3>
     
 
     <!-- jQuery on local - only use if no access to internet -->
@@ -111,6 +112,7 @@
 
       var score = 0;
       var misses = 0;
+      var iteration = 0;
 
 
       $('img').click(function() {
@@ -127,6 +129,9 @@
       $('.mole-hole').children().fadeOut();
         var rand = Math.floor(Math.random() * holes.length);
           $(holes[rand]).children().fadeIn(); 
+        iteration = iteration + 1;
+        misses = iteration - score;
+        $("#missHolder").text("Misses: " + misses);
       }, 3000);
 
 
