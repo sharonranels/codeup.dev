@@ -1,3 +1,8 @@
+
+
+<div style='font-size: 0.6em;font-family: Arial;float:left;'><a href='http://www.clker.com/clipart-scissors-10.html' target='_blank'><img src="http://www.clker.com/cliparts/L/2/T/J/f/S/scissors-th.png" /></div> 
+
+
 <?php
 
 $limit = 10;
@@ -140,8 +145,8 @@ while ($stmt->fetch()) {
 		<ul>
 			<? foreach ($rows as $items) :?>
 				<li>
-					<?= $items['item']?>
 					<button onclick="removeById(<?= $items['id']; ?>)">Remove Item</button>
+					<?= $items['item']?>
 				</li>
 			<? endforeach;?>
 		</ul>

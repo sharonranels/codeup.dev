@@ -17,33 +17,46 @@
     <![endif]-->
   
 <style>
-  
-  #game-board {
-    margin: 10px auto;
-    width: 456px;
-  }
 
-  #scoreboard {
-    margin: 10px auto;
-    width: 456px;
-  }
+    body {
+      background-image: url(/img/molehill1);
+    }
 
-  .mole-hole {
-    border: 1px solid black;
-    float: left;
-    height: 150px;
-    width: 150px;
-  }
- 
-  img {
-    height: 150px;
-    width: 150px;
-    display: none;
-  }
+    .container {
+        background-color: white;
+        width: 400px;
+        height: 550px;
+        opacity: 0.85
+    }
   
-  body {
-    text-align: center;
-  }
+    #game-board {
+        margin: 10px auto;
+        width: 456px;
+    }
+
+    #scoreboard {
+        margin: 10px auto;
+        width: 381px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .mole-hole {
+        border: 1px solid black;
+        float: left;
+        height: 125px;
+        width: 125px;
+    }
+     
+    img {
+        height: 125px;
+        width: 125px;
+        display: none;
+    }
+      
+    body {
+        text-align: center;
+    }
 
 
   </style>
@@ -52,59 +65,64 @@
   </head>
   <body>
     
+    <div class="container">
 
-    <h1>Whack-A-Mole</h1>
+        <h1>Whack-A-Mole</h1>
 
-      <button onclick="startGame()">START</button>
-
-      <div id="scoreboard">
-        <div id="scoreHolder">Score: 0</div>
-        <div id="missHolder">Misses: 0</div>
-        <div id="timeHolder">Time Left: 0</div>
-        <div id="highScore">High Score: 0</div>
-      </div>
-
-      <div id="game-board">
-
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
+        <button onclick="startGame()">START</button>
+            
+        <div class="row" id="scoreboard">
+            <div class="row">
+              <div class="col-sm-6" id="scoreHolder">Score: 0</div>
+              <div class="col-sm-6" id="highScore">High Score: 0</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6" id="missHolder">Misses: 0</div>
+              <div class="col-sm-6" id="timeHolder">Time Left: 0</div>
+            </div>
         </div>
-        
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
-        
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
-        
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
+       
+        <div id="game-board">
 
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
+            
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
+            
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
+            
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
 
-        <div class="mole-hole">  
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
 
-        <div class="mole-hole">
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
+            <div class="mole-hole">  
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
 
-        <div class="mole-hole">  
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
+            <div class="mole-hole">
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
 
-        <div class="mole-hole">  
-          <img src="/img/starmole.jpeg" alt="mole">
-        </div>
-        
-      </div>
+            <div class="mole-hole">  
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
 
-    
+            <div class="mole-hole">  
+              <img src="/img/starmole.jpeg" alt="mole">
+            </div>
+            
+          </div>
+
+    </div>
 
     <!-- jQuery on local - only use if no access to internet -->
     <!--script src="/js/jquery.js"></script> -->
@@ -143,7 +161,7 @@
                 clearInterval(endtime);
                 $('img').hide();
                 alert("TIME OVER!");
-            }, 32000);
+            }, 30750);
         }
 
         function timer() {
@@ -156,9 +174,9 @@
             var rand = Math.floor(Math.random() * holes.length);
             holes.children().fadeOut();
             $(holes[rand]).children().fadeIn(); 
-            $("#missHolder").text("Misses: " + misses);
-            iteration = iteration + 1;
             misses = iteration - score;
+            iteration = iteration + 1;
+            $("#missHolder").text("Misses: " + misses);
         }
 
         function startGame() {
@@ -175,7 +193,9 @@
             $("#timeHolder").text("Time Left: " + elapsetime);
             $("#scoreHolder").text("Score: " + score);
             
+            timer();
             endtime = setInterval(timer, 1000);
+            playGame();
             moleGame = setInterval(playGame, 2000);
         
             setTimeout(function() {
@@ -191,6 +211,12 @@
     </script>
   
   </div>
+
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
   </body>
 </html>
