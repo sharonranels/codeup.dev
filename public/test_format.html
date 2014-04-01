@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Online Personal Profile | Item : Site Design 1</title>
+
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS Style -->
+<link rel="stylesheet" href="style.css"> 
+ 
+<!-- Favicons -->
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+<!-- Used Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+
+<!-- JavaScript -->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script >
+// FBar PHP & JS Theme Demo Bar Version v1.0
+
+	var theme_list_open=false;
+		$(document).ready(function(){function e(){var e=$("#switcher")
+		.height();$("#iframe")
+		.attr("height",
+		$(window).height()-e+"px")}
+		IS_IPAD=navigator.userAgent.match(/iPad/i)!=null;
+		$(window).resize(function(){e()}).resize();
+			$("#theme_select").click(function(){if(theme_list_open==true){
+			$(".center ul li ul").hide();theme_list_open=false}else{
+			$(".center ul li ul").show();theme_list_open=true}return false});
+			$("#theme_list ul li a").click(function(){var e=$(this).attr("rel").split(",");
+			$("li.purchase a").attr("href",e[1]);
+			$("li.remove_frame a").attr("href",e[0]);
+			$("#iframe").attr("src",e[0]);
+			window.location.href = "?theme="+e[2]+""
+
+			$("li.close a").attr("src",e[0]);
+			$("#theme_list a#theme_select").text($(this).text());
+						$(".center ul li ul").hide();theme_list_open=false;return false});
+						
+			$("#header-bar").hide();clicked="desktop";var t={desktop:"100%",tabletlandscape:1040,tabletportrait:788,mobilelandscape:500,mobileportrait:340,placebo:0};jQuery(".responsive a").on("click",function(){var e=jQuery(this);for(device in t){console.log(device);console.log(t[device]);if(e.hasClass(device)){clicked=device;jQuery("#iframe").width(t[device]);if(clicked==device){jQuery(".responsive a").removeClass("active");e.addClass("active")}}}return false});if(IS_IPAD){
+			$("#iframe").css("padding-bottom","60px")
+			
+			
+
+		}}
+	)
+</script> 
+</head>
+
+<body>
+
+    <div id="switcher">
+		<div class="center">
+            <div class="logo">
+                <a href="http://www.onlinepersonalprofile.com" target="_self" title="Online Personal Profile"><img src="images/logo.png" alt="Online Personal Profile" /></a>
+            </div>
+            				
+                <ul>
+                    <li id="theme_list"><a id="theme_select" href="#">
+
+					Select a design...</a>
+                <ul>
+                                <li class="button_a">
+					
+					<a href="#" rel="http://www.onlinepersonalprofile.com/demo/site1/index.html,http://www.onlinepersonalprofile.com/#purchase,Site Design 1">Site Design 1 <span>PROFILE</span></a>
+<img alt="" class="preview" src="http://www.onlinepersonalprofile.com/demo/top-example-1.jpg"></li><li class="button_a">
+					
+					<a href="#" rel="http://www.onlinepersonalprofile.com/demo/site2/index.html,http://www.onlinepersonalprofile.com/#purchase,Site Design 2">Site Design 2 <span>PROFILE</span></a>
+<img alt="" class="preview" src="http://www.onlinepersonalprofile.com/demo/top-example-2.jpg"></li><li class="button_a">
+					
+					<a href="#" rel="http://www.onlinepersonalprofile.com/demo/site3/index.html,http://www.onlinepersonalprofile.com/#purchase,Site Design 3">Site Design 3 <span>PROFILE</span></a>
+<img alt="" class="preview" src="http://www.onlinepersonalprofile.com/demo/top-example-3.jpg"></li><li class="button_a">
+					
+					<a href="#" rel="http://www.onlinepersonalprofile.com/demo/site4/index.html,http://www.onlinepersonalprofile.com/#purchase,Site Design 4">Site Design 4 <span>PROFILE</span></a>
+<img alt="" class="preview" src="http://www.onlinepersonalprofile.com/demo/top-example-4.jpg"></li>                </ul>
+                    </li>	
+                </ul>
+            
+                <div class="responsive">
+                    <a href="#" class="desktop active" title="View Desktop Version"></a> 
+                    <a href="#" class="tabletlandscape" title="View Tablet Landscape (1024x768)"></a> 
+                    <a href="#" class="tabletportrait" title="View Tablet Portrait (768x1024)"></a> 
+                    <a href="#" class="mobilelandscape" title="View Mobile Landscape (480x320)"></a>
+                    <a href="#" class="mobileportrait" title="View Mobile Portrait (320x480)"></a>
+                </div>
+            
+                <div class="share">
+                 
+                </div>
+                
+                <ul class="links">
+                    <li class="purchase" rel="http://www.onlinepersonalprofile.com/#examples">
+                    <a href="http://www.onlinepersonalprofile.com/#purchase"><img src="images/purchase.png" alt="Web Design Tunes Themes" /> Order Your Site</a>
+                    </li>		
+                    <li class="close" rel="http://www.onlinepersonalprofile.com/#examples">
+                   
+                    <a href="http://www.onlinepersonalprofile.com/#examples"<img src="images/cross.png" alt="Web Design Tunes Themes" /> Close</a></li>		
+                </ul>
+        </div>
+    </div>
+    <iframe id="iframe" src="http://www.onlinepersonalprofile.com/demo/site1/index.html"  frameborder="0" width="100%"></iframe>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45336749-1', 'onlinepersonalprofile.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
